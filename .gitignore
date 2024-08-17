@@ -4,3 +4,13 @@
 
 /LearnBlazor/.vs/LearnBlazor
 /.vs
+/LearnBlazor/bin/Debug/net8.0
+*.dll
+/LearnBlazor/obj/Debug/net8.0/scopedcss
+/LearnBlazor/obj/Debug/net8.0/staticwebassets
+*.exe
+/LearnBlazor/obj/Debug/net8.0/LearnBlazor.AssemblyInfo.cs
+/LearnBlazor/obj/Debug/net8.0/LearnBlazor.AssemblyInfoInputs.cache
+/LearnBlazor/obj/Debug/net8.0/LearnBlazor.AssemblyInfo.cs
+/LearnBlazor/obj/Debug/net8.0/LearnBlazor.AssemblyInfoInputs.cache
+/LearnBlazor/obj/Debug/net8.0
