@@ -62,6 +62,11 @@
 			
 		</table>
 	</div>
+	<h2>Product Summary</h2>
+	@foreach (var product in ProductList)
+	{
+		<p>@product.Name [@product.Price] is @(product.IsActive?"Active" : "InActive")</p> <br />
+	}
 </div>
 
 
