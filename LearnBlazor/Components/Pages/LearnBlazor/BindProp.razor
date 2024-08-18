@@ -1,0 +1,61 @@
+﻿@page "/learnBlazor/bindProp"
+
+<h3>Product - Data Binding</h3>
+
+Name : @Product.Name 
+<br />
+IsActive : <input type="checkbox" @bind="@Product.IsActive" /> @*to działa tak samo jak to niżej*@
+<button onclick="@ChangeActivity">Change Activity: @Product.IsActive</button>
+<br />
+@if(Product.IsActive)
+{
+	<p>Product is Active</p>
+} else
+{
+	<p>Product is Inactive</p>
+}
+@(Product.IsActive ? "Active" : "Inactive")
+<br />
+Price : @Product.Price $
+<br />
+Input Price : <input type="number" @bind="@Product.Price" @bind:event="oninput"/> 
+
+<br />
+<br />
+Product Properties: 
+<select @bind="selectedProp">
+	@foreach(var prop in Product.ProductProperties)
+	{
+		<option value="@prop.Key">@prop.Key</option>
+	}
+</select>
+<br />
+Selected Prop : @selectedProp
+@if (!string.IsNullOrEmpty(selectedProp))
+{
+	<p>Selected Value : @Product.ProductProperties.FirstOrDefault(u => u.Key==selectedProp).Value</p>
+}
+
+
+@code {
+	private string selectedProp = "";
+
+	Models.Product Product = new()
+		{
+			Id = 1,
+			Name = "Product 1",
+			IsActive = true,
+			Price = 5,
+			ProductProperties = new List<Models.Product_Prop>()
+			{
+				new Models.Product_Prop{Id=1, Key="Color", Value="Red"},
+				new Models.Product_Prop{Id=2, Key="Size", Value="20oz"},
+				new Models.Product_Prop{Id=3, Key="Flavour", Value="Rose"},
+			}
+		};
+
+	public void ChangeActivity()
+	{
+		Product.IsActive = !Product.IsActive;
+	}
+}
