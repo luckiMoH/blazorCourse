@@ -2,25 +2,17 @@
 
 <div class="row">
 	<h2>Demo Product</h2>
+	<p>Favourite Count : @FavouriteCount</p>
+	<p>Selected Product : @SelectedProduct</p>
 	@foreach (var product in ProductList)
 	{
-		<div class="col-5 m-1 border p-1">
-			<p class="text-primary fs-3">Product - @product.Id</p>
-			<p>@product.Name</p>
-			<p>Show Properties: <input type="checkbox" @bind="@product.IsActive"/></p>
-			@if (product.IsActive)
-			{
-				@foreach (var prop in product.ProductProperties)
-				{
-					<p>@prop.Key : @prop.Value</p>
-				}
-			}
-			<_DeleteButtonComponent ProductId="@product.Id"/>
-		</div>
+		<_IndividualProduct Product="@product" OnFavouriteUpdated="FavouriteCountChange" OnProductClick="UpdateSelectedProduct">
+
+		</_IndividualProduct>
 	}
 </div>
 <div class="row pt-4">
-	<input type="button" class="btn btn-success" style="width: 100px" value="Counter" @onclick="()=> Increment(5)" />
+	<input type="button" class="btn btn-success" style="width: 100px" value="Counter" />
 	<p>Count: @Count</p>
 </div>
 
@@ -28,6 +20,8 @@
 	List<Product> ProductList = new();
 
 	public int Count { get; set; } = 0;
+	public int FavouriteCount { get; set; } = 0;
+	public string SelectedProduct { get; set; } = string.Empty;
 
 	protected override void OnInitialized()
 	{
@@ -36,7 +30,7 @@
 				Id = 1,
 				Name = "Midnight Blaze",
 				IsActive = false,
-				Price = 5.99,
+				Price = 6.99,
 				ProductProperties = new List<Product_Prop>()
 				{
 					new Product_Prop { Id = 1, Key = "Flavor", Value = "Rose"},
@@ -85,24 +79,23 @@
 					new Product_Prop { Id = 3, Key = "Color", Value="Yellow" }
 				}
 			});
-		ProductList.Add(new()
-			{
-				Id = 5,
-				Name = "Sunrise Tequila",
-				IsActive = true,
-				Price = 4.99,
-				ProductProperties = new List<Product_Prop>()
-				{
-					new Product_Prop { Id = 1, Key = "Flavor", Value = "Orange"},
-					new Product_Prop { Id = 2, Key = "Size", Value = "18oz"},
-					new Product_Prop { Id = 3, Key = "Color", Value="Yellow" }
-				}
-			});
 	}
 
-	private void Increment(int counter)
+	protected void FavouriteCountChange(bool isSelected)
 	{
-		Count += counter;
+		if (isSelected)
+		{
+			FavouriteCount++;
+		}
+		else
+		{
+			FavouriteCount--;
+		}
+	}
+
+	protected void UpdateSelectedProduct(string productName)
+	{
+		SelectedProduct = productName;
 	}
 
 
