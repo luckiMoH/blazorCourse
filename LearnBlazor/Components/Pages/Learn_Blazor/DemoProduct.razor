@@ -15,7 +15,7 @@
 					<p>@prop.Key : @prop.Value</p>
 				}
 			}
-			<input type="button" class="btn btn-danger" style="width: 100px" value="Delete" @onclick="()=>DeleteProduct(product.Id)"/>
+			<_DeleteButtonComponent ProductId="@product.Id"/>
 		</div>
 	}
 </div>
@@ -105,16 +105,6 @@
 		Count += counter;
 	}
 
-	private void DeleteProduct(int productId) 
-	{
-		var productToRemove = ProductList.FirstOrDefault(p => p.Id == productId);
-
-		if (productToRemove != null)
-		{
-			ProductList.Remove(productToRemove);
-		}
-
-	}
 
 	private void DeleteProductsByName(string productName)
 	{
