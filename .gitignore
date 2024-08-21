@@ -19,3 +19,7 @@
 /SampleAppSSR/.vs/SampleAppSSR
 /SampleAppSSR/bin/Debug/net8.0
 /SampleAppSSR/obj
+/sampleAppServerGlobal
+/SampleAppServerLocal/.vs
+/SampleAppServerLocal/bin/Debug/net8.0
+/SampleAppServerLocal/obj
